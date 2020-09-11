@@ -25,7 +25,7 @@ public class Tests {
    * Run all tests in file, outputting performance data to CSV file
    */
   public void runTests() {
-    // Open file
+    // Open output CSV file
     try {
       fos = new FileOutputStream("AlgorithmsGraph.csv", true);
       pw = new PrintWriter(fos);
@@ -41,7 +41,7 @@ public class Tests {
     System.out.println("test DoublePointerLast: " + (testSortAlgorithmDoublePointerLast() ? "ok" : "fail"));
     System.out.println("test InsertionSort: " + (testSortAlgorithmInsertionSort() ? "ok" : "fail"));
 
-    // 
+    // Run performance tests, printing to CSV file
     pw.println("n:," + mapIntArrayToCSVString(getNValues()));
     pw.println("QuickSort Single Pointer Last Random:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastTest()));
     pw.println("QuickSort Single Pointer Last Asc:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastAscTest())); 
@@ -76,7 +76,9 @@ public class Tests {
         .collect(Collectors.joining(", "));
   }
 
-  // Test methods that verify that a given sort algorithm is working properly.
+  /** 
+   * Test methods that verify that each sort algorithm is working properly.
+   */ 
 
   public Boolean testSortAlgorithmSinglePointerLast() {
     int[] array = generateRandomArray(20);
@@ -108,7 +110,9 @@ public class Tests {
     return Utilities.isSortedNonDecreasing(array);
   }
 
-  // BEGIN SORT TEST METHODS
+  /**
+   * BEGIN SORT TEST METHODS
+   */
 
   public long[] sortAlgorithmSinglePointerLastTest(){
     int[] nVals = getNValues();

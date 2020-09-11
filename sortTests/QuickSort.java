@@ -1,6 +1,17 @@
 package sortTests;
 
-//Implementing Quicksort
+/**
+ * The QuickSort class contains 4 different sorting and partition algorithms including:
+ * 
+ * Single Pointer, Pivot Last
+ * Single Pointer, Pivot Middle
+ * Single Pointer, Pivot Median of 3
+ * Double Pointer, Pivot Last
+ * 
+ * @author  Rufus R Mathew, Josiah R Lansford
+ * @since   2020-09-11
+ *  File:   QuickSort.java
+ */
 public class QuickSort {
   
   /**
@@ -79,6 +90,12 @@ public class QuickSort {
     }
   }
 
+  /**
+   * Partition algorithm using a single pointer, pick last element to be pivot
+   * @param array    the array to partition
+   * @param lowIndx  the lowest index of the partition
+   * @param highIndx the highest index of the partition
+   */
   public static int partitionSinglePointerLast(int array[], int lowIndx, int highIndx) {
     // Choose the pivot point at the end of the array.
     // Partition array on left and right of pivot point.
@@ -104,6 +121,12 @@ public class QuickSort {
     return lowPointer;
   }
 
+  /**
+   * Partition algorithm using a single pointer, pick middle element to be pivot
+   * @param array    the array to partition
+   * @param lowIndx  the lowest index of the partition
+   * @param highIndx the highest index of the partition
+   */
   public static int partitionSinglePointerMedian(int array[], int lowIndx, int highIndx) {
     // Choose pivot at median index
     int pivot = array[(highIndx + lowIndx) / 2];
@@ -132,6 +155,13 @@ public class QuickSort {
     return lowPointer;
   }
 
+  /**
+   * Partition algorithm using a single pointer, pick median value of first,
+   * middle, and last element to be pivot
+   * @param array    the array to partition
+   * @param lowIndx  the lowest index of the partition
+   * @param highIndx the highest index of the partition
+   */
   public static int partitionSinglePointerMedianThree(int array[], int lowIndx, int highIndx) {
     // Pivot at median value of first, middle, and last indices
     // Partition array on left and right of pivot point.

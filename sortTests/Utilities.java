@@ -2,6 +2,14 @@ package sortTests;
 
 import java.util.Arrays;
 
+/**
+ * The Utlities class provides methods to assist with implementation of
+ * the QuickSort and InsertionSort algorithms and their tests.
+ * 
+ * @author  Rufus R Mathew, Josiah R Lansford
+ * @since   2020-09-11
+ *  File:   Utilities.java
+ */
 public class Utilities {
   /**
    * @param array the integer array
