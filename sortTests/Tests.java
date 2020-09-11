@@ -8,11 +8,24 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
+/**
+ * The Tests class contains methods to test various implementations of
+ * the QuickSort and InsertionSort algorithms, outputting the results
+ * to a CSV file.
+ * 
+ * @author  Rufus R Mathew, Josiah R Lansford
+ * @since   2020-09-11
+ *  File:   Tests.java
+ */
 public class Tests {
   FileOutputStream fos;
   PrintWriter pw;
  
+  /**
+   * Run all tests in file, outputting performance data to CSV file
+   */
   public void runTests() {
+    // Open file
     try {
       fos = new FileOutputStream("AlgorithmsGraph.csv", true);
       pw = new PrintWriter(fos);
@@ -21,12 +34,14 @@ public class Tests {
       System.out.println("Unable to open file");
     }
 
+    // Before running performance tests, ensure that each kind of test works properly on a small set of data
     System.out.println("test SinglePointerLast: " + (testSortAlgorithmSinglePointerLast() ? "ok" : "fail"));
     System.out.println("test SinglePointerMedian: " + (testSortAlgorithmSinglePointerMedian() ? "ok" : "fail"));
     System.out.println("test SinglePointerMedianThree: " + (testSortAlgorithmSinglePointerMedianThree() ? "ok" : "fail"));
     System.out.println("test DoublePointerLast: " + (testSortAlgorithmDoublePointerLast() ? "ok" : "fail"));
     System.out.println("test InsertionSort: " + (testSortAlgorithmInsertionSort() ? "ok" : "fail"));
 
+    // 
     pw.println("n:," + mapIntArrayToCSVString(getNValues()));
     pw.println("QuickSort Single Pointer Last Random:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastTest()));
     pw.println("QuickSort Single Pointer Last Asc:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastAscTest())); 
@@ -41,15 +56,59 @@ public class Tests {
     pw.close();
   }
 
-  // get array ranging from 1,000 to 1,000,000 values
+  /**
+   * Generate array of numbers specifying the N size for sorting.
+   * Can be configured to support different ranges and granularity.
+   */
   public int[] getNValues() {
-    int[] result = new int[8];
+    int[] result = new int[200];
     int resultIndex = 0;
-    for (int i = 2000; i <= 16000; i += 2000) {
+    for (int i = 50; i <= 10000; i += 50) {
       result[resultIndex++] = i;
     }
     return result;
   }
+
+  public String mapLongArrayToCSVString(long[] array) {
+    // map result array to comma-separated string
+    return LongStream.of(array)
+        .mapToObj(Long::toString)
+        .collect(Collectors.joining(", "));
+  }
+
+  // Test methods that verify that a given sort algorithm is working properly.
+
+  public Boolean testSortAlgorithmSinglePointerLast() {
+    int[] array = generateRandomArray(20);
+    QuickSort.sortAlgorithmSinglePointerLast(array, 0, array.length - 1);
+    return Utilities.isSortedNonDecreasing(array);
+  }
+
+  public Boolean testSortAlgorithmSinglePointerMedian() {
+    int[] array = generateRandomArray(20);
+    QuickSort.sortAlgorithmSinglePointerMedian(array, 0, array.length - 1);
+    return Utilities.isSortedNonDecreasing(array);
+  }
+  
+  public Boolean testSortAlgorithmSinglePointerMedianThree() {
+    int[] array = generateRandomArray(20);
+    QuickSort.sortAlgorithmSinglePointerMedianThree(array, 0, array.length - 1);
+    return Utilities.isSortedNonDecreasing(array);
+  }
+
+  public Boolean testSortAlgorithmDoublePointerLast() {
+    int[] array = generateRandomArray(20);
+    QuickSort.sortAlgorithmDoublePointerLast(array, 0, array.length - 1);
+    return Utilities.isSortedNonDecreasing(array);
+  }
+
+  public Boolean testSortAlgorithmInsertionSort() {
+    int[] array = generateRandomArray(20);
+    InsertionSort.sort(array);
+    return Utilities.isSortedNonDecreasing(array);
+  }
+
+  // BEGIN SORT TEST METHODS
 
   public long[] sortAlgorithmSinglePointerLastTest(){
     int[] nVals = getNValues();
@@ -389,42 +448,5 @@ public class Tests {
     return IntStream.of(array)
         .mapToObj(Integer::toString)
         .collect(Collectors.joining(", "));
-  }
-
-  public String mapLongArrayToCSVString(long[] array) {
-    // map result array to comma-separated string
-    return LongStream.of(array)
-        .mapToObj(Long::toString)
-        .collect(Collectors.joining(", "));
-  }
-
-  public Boolean testSortAlgorithmSinglePointerLast() {
-    int[] array = generateRandomArray(20);
-    QuickSort.sortAlgorithmSinglePointerLast(array, 0, array.length - 1);
-    return Utilities.isSortedNonDecreasing(array);
-  }
-
-  public Boolean testSortAlgorithmSinglePointerMedian() {
-    int[] array = generateRandomArray(20);
-    QuickSort.sortAlgorithmSinglePointerMedian(array, 0, array.length - 1);
-    return Utilities.isSortedNonDecreasing(array);
-  }
-  
-  public Boolean testSortAlgorithmSinglePointerMedianThree() {
-    int[] array = generateRandomArray(20);
-    QuickSort.sortAlgorithmSinglePointerMedianThree(array, 0, array.length - 1);
-    return Utilities.isSortedNonDecreasing(array);
-  }
-
-  public Boolean testSortAlgorithmDoublePointerLast() {
-    int[] array = generateRandomArray(20);
-    QuickSort.sortAlgorithmDoublePointerLast(array, 0, array.length - 1);
-    return Utilities.isSortedNonDecreasing(array);
-  }
-
-  public Boolean testSortAlgorithmInsertionSort() {
-    int[] array = generateRandomArray(20);
-    InsertionSort.sort(array);
-    return Utilities.isSortedNonDecreasing(array);
   }
 }
