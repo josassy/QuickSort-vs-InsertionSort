@@ -1,5 +1,4 @@
 package sortTests;
-import java.util.Arrays;
 
 //Implementing Quicksort
 public class QuickSort {
