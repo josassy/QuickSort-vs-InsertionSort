@@ -1,9 +1,10 @@
 package sortTests;
+import java.io.FileNotFoundException;
 
 class Main {
-  public static void main (String[] args) {
-    System.out.println("hello from main");
-    System.out.println(InsertionSort.testSanity());
-    System.out.println(QuickSort.testSanity());
+  public static void main (final String[] args) throws FileNotFoundException {
+    Tests testRunner = new Tests();
+    testRunner.runTests();
   }
-}
+};
+
