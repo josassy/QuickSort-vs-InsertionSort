@@ -43,9 +43,9 @@ public class Tests {
 
   // get array ranging from 1,000 to 1,000,000 values
   public int[] getNValues() {
-    int[] result = new int[500];
+    int[] result = new int[8];
     int resultIndex = 0;
-    for (int i = 2000; i <= 100000; i += 2000) {
+    for (int i = 2000; i <= 16000; i += 2000) {
       result[resultIndex++] = i;
     }
     return result;
