@@ -27,16 +27,16 @@ public class Tests {
     System.out.println("test DoublePointerLast: " + (testSortAlgorithmDoublePointerLast() ? "ok" : "fail"));
     System.out.println("test InsertionSort: " + (testSortAlgorithmInsertionSort() ? "ok" : "fail"));
 
-      pw.println("n:," + mapIntArrayToCSVString(getNValues()));
-   // pw.println("QuickSort Single Pointer Last Random:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastTest()));
-      pw.println("QuickSort Single Pointer Last Asc:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastAscTest())); //TODO
-      pw.println("QuickSort Single Pointer Last Desc:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastDescTest())); //TODO
-   // pw.println("QuickSort Single Pointer Median:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerMedianTest()));
-   // pw.println("QuickSort Single Pointer Median Three:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerMedianThreeTest()));
-   // pw.println("QuickSort Double Pointer Last:," + mapLongArrayToCSVString(sortAlgorithmDoublePointerLastTest()));
-   // pw.println("Insertion Sort Random:," + mapLongArrayToCSVString(sortAlgorithmInsertionSortRandomTest()));
-   // pw.println("Insertion Sort Asc:," + mapLongArrayToCSVString(sortAlgorithmInsertionSortAscTest()));
-   // pw.println("Insertion Sort Desc:," + mapLongArrayToCSVString(sortAlgorithmInsertionSortDescTest()));
+    pw.println("n:," + mapIntArrayToCSVString(getNValues()));
+    pw.println("QuickSort Single Pointer Last Random:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastTest()));
+    pw.println("QuickSort Single Pointer Last Asc:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastAscTest())); 
+    pw.println("QuickSort Single Pointer Last Desc:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerLastDescTest())); 
+    pw.println("QuickSort Single Pointer Median:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerMedianTest()));
+    pw.println("QuickSort Single Pointer Median Three:," + mapLongArrayToCSVString(sortAlgorithmSinglePointerMedianThreeTest()));
+    pw.println("QuickSort Double Pointer Last:," + mapLongArrayToCSVString(sortAlgorithmDoublePointerLastTest()));
+    pw.println("Insertion Sort Random:," + mapLongArrayToCSVString(sortAlgorithmInsertionSortRandomTest()));
+    pw.println("Insertion Sort Asc:," + mapLongArrayToCSVString(sortAlgorithmInsertionSortAscTest()));
+    pw.println("Insertion Sort Desc:," + mapLongArrayToCSVString(sortAlgorithmInsertionSortDescTest()));
     
     pw.close();
   }
