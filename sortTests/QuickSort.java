@@ -1,4 +1,5 @@
 package sortTests;
+import java.util.Arrays;
 
 //Implementing Quicksort
 public class QuickSort {
@@ -106,13 +107,10 @@ public class QuickSort {
 
   public static int partitionSinglePointerMedian(int array[], int lowIndx, int highIndx) {
     // Choose pivot at median index
-    int pivot = array[(highIndx - lowIndx) / 2];
-    System.out.println("pivot value: " + pivot);
-    System.out.println("pivot index: " + (highIndx - lowIndx) / 2);
+    int pivot = array[(highIndx + lowIndx) / 2];
+
     // Swap pivot value to end of array
-    System.out.println(array.toString())
-    Utilities.swap(array, (highIndx - lowIndx) / 2, highIndx);
-    System.out.println(array.toString())
+    Utilities.swap(array, (highIndx + lowIndx) / 2, highIndx);
 
     // Now that pivot is at end of array, partition array
     // Create pointer variable to keep track of pivot location
@@ -138,13 +136,12 @@ public class QuickSort {
   public static int partitionSinglePointerMedianThree(int array[], int lowIndx, int highIndx) {
     // Pivot at median value of first, middle, and last indices
     // Partition array on left and right of pivot point.
-    int first = array[lowIndx];
-    int middle = array[(highIndx - lowIndx)/2]; 
-    int last = array[highIndx];
+    int pivotIndex = findMedianIndexByValue(array, lowIndx, (highIndx + lowIndx) / 2, highIndx);
+    int pivot = array[pivotIndex];
 
-    // find median value of first, middle, last
-    int pivot = findMedianValue(first, middle, last);
-    
+    // Swap pivot value to end of array
+    Utilities.swap(array, pivotIndex, highIndx);
+        
     // Now that pivot is at end of array, partition array
     // Create pointer variable to keep track of pivot location
     int lowPointer = lowIndx - 1; // index of smaller element
@@ -174,38 +171,42 @@ public class QuickSort {
    */
   public static int partitionDoublePointerLast(int array[], int lowIndx, int highIndx) {
     int pivot = array[highIndx];
-    int lower = lowIndx;
-    int upper = highIndx - 1;
+    int lowerPtr = lowIndx;
+    int upperPtr = highIndx - 1;
 
-    while (lower <= upper) {
+    while (lowerPtr <= upperPtr) {
       // Iterate until find a value less than pivot
-      while (lower <= upper && array[upper] >= pivot) {
-        upper--;
+      while (lowerPtr <= upperPtr && array[upperPtr] >= pivot) {
+        upperPtr--;
       }
       // Iterate until find a value more than pivot
-      while (lower <= upper && array[lower] <= pivot) {
-        lower++;
+      while (lowerPtr <= upperPtr && array[lowerPtr] <= pivot) {
+        lowerPtr++;
       }
-      // If if indices have not crossed, swap values
-      if (lower < upper) {
-        Utilities.swap(array, lower, upper);
+      // If indices have not crossed, swap values
+      if (lowerPtr < upperPtr) {
+        Utilities.swap(array, lowerPtr, upperPtr);
       }
     }
 
-    Utilities.swap(array, lower, upper);
-    return lower;
+    Utilities.swap(array, lowerPtr, highIndx);
+    return lowerPtr;
   }
 
   /**
-   * Find median value of three values
+   * Find the index corresponding to the median value in the array.
+   * @param A the array to search
+   * @param a first index
+   * @param b second index
+   * @param c third index
    */
-  public static int findMedianValue(int a, int b, int c) {
+  public static int findMedianIndexByValue(int[] A, int a, int b, int c) {
     // a is greater than b.
-    if (a > b) {
-      if (b > c) {
+    if (A[a] > A[b]) {
+      if (A[b] > A[c]) {
         return b;
       }
-      else if (a > c) {
+      else if (A[a] > A[c]) {
         return c;
       }
       else {
@@ -214,10 +215,10 @@ public class QuickSort {
     }
     // a is not greater than b.
     else {
-      if (a > c) {
+      if (A[a] > A[c]) {
         return a;
       }
-      else if (b > c) {
+      else if (A[b] > A[c]) {
         return c;
       }
       else {
